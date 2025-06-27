@@ -1,28 +1,62 @@
 # nuxt-3-MFE-POC
 A Proof of Concept for Module Federation using Nuxt 3 in Nuxt 3
 
+## How to Clone and run
+
+### Prereqisits
+
+- Docker (e.g. Docker Desktop)
+- VSCode
+- Linux (WSL / Standalone)
+
+### Start Devcontainer
+
+1. Open VSCode in Project Roboto
+2. Press `F1`
+3. Choose option `Dev Containers: Reopen in Container`
+
+### Start Remote Application
+
+```bash
+cd remote-app
+pnpm install
+pnpm dev
+```
+
+### Start Host Application
+
+```bash
+cd ../host
+pnpm install
+pnpm dev
+```
+
 ## Steps to create Project
 
-1. Create Projects for POC
+### Create Projects for POC
 
-    ```bash
-    pnpm create nuxt host
-    pnpm create nuxt remote-app
-    ```
+> [!INFO]
+>
+> Both use Default Settings
 
-    > Both use Default Settings
+```bash
+pnpm create nuxt host
+pnpm create nuxt remote-app
+```
 
-2. Install required Dependencies to Project
+### Install required Dependencies to Project
 
-    > All are Required to medicate compiler errors
-    > Run command in both Projects
+> [!INFO]
+>
+> All are Required to medicate compiler errors
+> Run command in both Projects
 
-    ```bash
-    pnpm add @module-federation/enhanced
-    pnpm add -D @nuxt/webpack-builder css-loader esbuild-loader ofetch postcss postcss-loader ufo vue-loader vue-style-loader vue-tsc webpack-hot-middleware
-    ```
+```bash
+pnpm add @module-federation/enhanced
+pnpm add -D @nuxt/webpack-builder css-loader esbuild-loader ofetch postcss postcss-loader ufo vue-loader vue-style-loader vue-tsc webpack-hot-middleware
+```
 
-3. Host Settings
+### Host Settings
 
     ```typescript
     // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -91,7 +125,7 @@ A Proof of Concept for Module Federation using Nuxt 3 in Nuxt 3
     });
     ```
 
-4. Remote Settings
+### Remote Settings
 
     ```typescript
     // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -162,7 +196,7 @@ A Proof of Concept for Module Federation using Nuxt 3 in Nuxt 3
     });
     ```
 
-5. Create Remote Component `./components/WelcomeMessage.vue`
+### Create Remote Component `./components/WelcomeMessage.vue`
 
     ```Vue
     <!-- remote-app/components/WelcomeMessage.vue -->
@@ -194,7 +228,7 @@ A Proof of Concept for Module Federation using Nuxt 3 in Nuxt 3
     </script>
     ```
 
-6. Use `@module-federation/enhanced/runtime` to load Remote Component
+### Use `@module-federation/enhanced/runtime` to load Remote Component
 
     ```Vue
     <!-- host-app/app.vue -->
